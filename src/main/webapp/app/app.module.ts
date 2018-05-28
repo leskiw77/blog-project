@@ -10,7 +10,7 @@ import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { BlogSharedModule, UserRouteAccessService } from './shared';
+import {BlogSharedModule, Principal, UserRouteAccessService} from './shared';
 import { BlogAppRoutingModule} from './app-routing.module';
 import { BlogHomeModule } from './home/home.module';
 import { BlogAdminModule } from './admin/admin.module';
@@ -29,7 +29,9 @@ import {
 import { EntriesComponent } from './layouts/entries/entries.component';
 import { EntryListComponent } from './layouts/entries/entry-list/entry-list.component';
 import { EntryDetailComponent } from './layouts/entries/recipe-detail/entry-detail.component';
-import {AddTopicModalService} from "./shared/addtopic/add-topic-modal.service";
+import {AddTopicModalComponent} from "./layouts/entries/addtopic/addtopic.component";
+import {AddTopicService} from "./layouts/entries/addtopic/add-topic.service";
+import {AddTopicModalService} from "./layouts/entries/addtopic/add-topic-modal.service";
 
 @NgModule({
     imports: [
@@ -52,13 +54,16 @@ import {AddTopicModalService} from "./shared/addtopic/add-topic-modal.service";
         EntriesComponent,
         EntryListComponent,
         EntryDetailComponent,
-
+        AddTopicModalComponent,
     ],
+
     providers: [
         ProfileService,
+        Principal,
         PaginationConfig,
         AddTopicModalService,
         UserRouteAccessService,
+        AddTopicService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

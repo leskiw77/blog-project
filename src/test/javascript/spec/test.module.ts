@@ -11,7 +11,7 @@ import { MockAccountService } from './helpers/mock-account.service';
 import { MockActivatedRoute, MockRouter } from './helpers/mock-route.service';
 import { MockActiveModal } from './helpers/mock-active-modal.service';
 import { MockEventManager } from './helpers/mock-event-manager.service';
-import {AddTopicModalService} from "../../../main/webapp/app/shared/addtopic/add-topic-modal.service";
+import {AddTopicModalService} from "../../../main/webapp/app/layouts/entries/addtopic/add-topic-modal.service";
 
 @NgModule({
     providers: [

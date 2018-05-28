@@ -12,14 +12,12 @@ import {
     LoginService,
     LoginModalService,
     JhiLoginModalComponent,
-    Principal,
     HasAnyAuthorityDirective,
     JhiSocialComponent,
     SocialService,
 } from './';
 import { EntriesService } from './entries/entries.service';
-import { AddTopicModalComponent } from "./addtopic/addtopic.component";
-import {AddTopicService} from "./addtopic/add-topic.service";
+import {AddTopicModalComponent} from "../layouts/entries/addtopic/addtopic.component";
 
 @NgModule({
     imports: [
@@ -29,7 +27,6 @@ import {AddTopicService} from "./addtopic/add-topic.service";
     declarations: [
         JhiSocialComponent,
         JhiLoginModalComponent,
-        AddTopicModalComponent,
         HasAnyAuthorityDirective
     ],
     providers: [
@@ -37,18 +34,16 @@ import {AddTopicService} from "./addtopic/add-topic.service";
         LoginModalService,
         AccountService,
         StateStorageService,
-        Principal,
         CSRFService,
         AuthServerProvider,
         SocialService,
         UserService,
         DatePipe,
         EntriesService,
-        AddTopicService
     ],
     entryComponents: [
         JhiLoginModalComponent,
-        AddTopicModalComponent
+        AddTopicModalComponent,
     ],
     exports: [
         BlogSharedCommonModule,
@@ -56,7 +51,6 @@ import {AddTopicService} from "./addtopic/add-topic.service";
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe,
-        AddTopicModalComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
