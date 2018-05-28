@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Entry } from '../../../shared/user/entry.model';
 import { EntriesService } from '../../../shared/entries/entries.service';
+import {AddTopicModalService} from "../../../shared/addtopic/add-topic-modal.service";
+import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-entry-list',
@@ -12,9 +14,11 @@ export class EntryListComponent implements OnInit {
   @Output() entryWasSelected = new EventEmitter<Entry>();
 
     entriesList: Entry[];
+    modalRef: NgbModalRef;
 
     constructor(
-        private entriesService: EntriesService
+        private entriesService: EntriesService,
+        private addTopicModalService: AddTopicModalService
     ){
     }
 
@@ -32,4 +36,8 @@ export class EntryListComponent implements OnInit {
   onSelected(entry: Entry) {
     this.entryWasSelected.emit(entry);
   }
+
+    newTopic() {
+        this.modalRef = this.addTopicModalService.open();
+    }
 }

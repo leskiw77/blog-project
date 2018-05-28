@@ -11,4 +11,22 @@ export class EntriesService  {
     get(): Observable<HttpResponse<Entries>> {
         return this.http.get<Entries>(SERVER_API_URL + 'entry/all', {observe : 'response'});
     }
+
+    add(entry): Observable<any> {
+
+        const data = {
+            title: entry.title,
+            text: entry.text,
+            tags: entry.tags
+        };
+        return this.http.post(SERVER_API_URL + 'entry/new', data, {observe : 'response'}).map(authenticateSuccess.bind(this));
+
+        function authenticateSuccess(resp) {
+            const bearerToken = resp.headers.get('Authorization');
+            if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
+                const jwt = bearerToken.slice(7, bearerToken.length);
+                return jwt;
+            }
+        }
+    }
 }

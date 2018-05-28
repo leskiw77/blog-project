@@ -29,6 +29,7 @@ import {
 import { EntriesComponent } from './layouts/entries/entries.component';
 import { EntryListComponent } from './layouts/entries/entry-list/entry-list.component';
 import { EntryDetailComponent } from './layouts/entries/recipe-detail/entry-detail.component';
+import {AddTopicModalService} from "./shared/addtopic/add-topic-modal.service";
 
 @NgModule({
     imports: [
@@ -50,11 +51,13 @@ import { EntryDetailComponent } from './layouts/entries/recipe-detail/entry-deta
         FooterComponent,
         EntriesComponent,
         EntryListComponent,
-        EntryDetailComponent
+        EntryDetailComponent,
+
     ],
     providers: [
         ProfileService,
         PaginationConfig,
+        AddTopicModalService,
         UserRouteAccessService,
         {
             provide: HTTP_INTERCEPTORS,
