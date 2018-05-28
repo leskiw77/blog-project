@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">New Topic</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <div
+      *ngFor="let entryEl of entriesList"
+      (click)="onSelected(entryEl)"
+    >
+
+            <div class="pull-left">
+                <h4 class="list-group-item-heading">{{ entryEl.title }}</h4>
+            </div>
+            <span class="pull-right">
+            </span>
+
+    </div>
+  </div>
+</div>

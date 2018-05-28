@@ -26,6 +26,9 @@ import {
     PageRibbonComponent,
     ErrorComponent
 } from './layouts';
+import { EntriesComponent } from './layouts/entries/entries.component';
+import { EntryListComponent } from './layouts/entries/entry-list/entry-list.component';
+import { EntryDetailComponent } from './layouts/entries/recipe-detail/entry-detail.component';
 
 @NgModule({
     imports: [
@@ -44,7 +47,10 @@ import {
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        FooterComponent
+        FooterComponent,
+        EntriesComponent,
+        EntryListComponent,
+        EntryDetailComponent
     ],
     providers: [
         ProfileService,

@@ -17,6 +17,7 @@ import {
     JhiSocialComponent,
     SocialService,
 } from './';
+import { EntriesService } from './entries/entries.service';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import {
         AuthServerProvider,
         SocialService,
         UserService,
-        DatePipe
+        DatePipe,
+        EntriesService
     ],
     entryComponents: [JhiLoginModalComponent],
     exports: [
