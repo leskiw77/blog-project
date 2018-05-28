@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.EntryService;
 import com.mycompany.myapp.service.TagsService;
 import com.mycompany.myapp.service.dto.EntryRequestDTO;
@@ -24,6 +25,8 @@ public class EntryController {
 
     @PostMapping("/new")
     public ResponseEntity createNewEntry(@RequestBody EntryRequestDTO entryRequestDTO) {
+
+
         return entryService.createNewEntry(entryRequestDTO) ?
             ResponseEntity.ok(HttpStatus.CREATED) : ResponseEntity.ok(HttpStatus.CONFLICT);
     }

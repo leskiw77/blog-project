@@ -4,31 +4,19 @@ import java.util.List;
 
 public class EntryRequestDTO {
 
-//    todo: consider change to name
-    private int creatorId;
-
     private String title;
 
     private String text;
 
     private List<String> tags;
 
-    public EntryRequestDTO(int creatorId, String title, String text, List<String> tags) {
-        this.creatorId = creatorId;
+    public EntryRequestDTO(String title, String text, List<String> tags) {
         this.title = title;
         this.text = text;
         this.tags = tags;
     }
 
     public EntryRequestDTO() {
-    }
-
-    public int getCreatorId() {
-        return creatorId;
-    }
-
-    public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
     }
 
     public String getTitle() {

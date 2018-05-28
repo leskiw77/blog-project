@@ -5,6 +5,7 @@ import com.mycompany.myapp.domain.Tag;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.EntryRepository;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.EntryRequestDTO;
 import com.mycompany.myapp.service.dto.EntryResponseDTO;
 import com.mycompany.myapp.service.dto.EntryResponseListDTO;
@@ -33,15 +34,16 @@ public class EntryService {
     }
 
     public boolean createNewEntry(EntryRequestDTO entryRequestDTO){
-        User user = getUserById(entryRequestDTO.getCreatorId());
+        Optional<User> user = SecurityUtils.getCurrentUserLogin()
+            .flatMap(userRepository::findOneByLogin);
 
-        if(titleAlreadyIdBlog(entryRequestDTO.getTitle())){
+        if(titleAlreadyIdBlog(entryRequestDTO.getTitle()) || !user.isPresent()){
             return false;
         }
 
         Set<Tag> tags = tagsService.getSetOfTags(entryRequestDTO.getTags());
 
-        Entry entry = new Entry(entryRequestDTO.getTitle(), LocalDateTime.now(), tags, user, entryRequestDTO.getText());
+        Entry entry = new Entry(entryRequestDTO.getTitle(), LocalDateTime.now(), tags, user.get(), entryRequestDTO.getText());
 
         entryRepository.save(entry);
         return true;
