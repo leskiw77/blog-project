@@ -3,23 +3,17 @@ import { Routes } from '@angular/router';
 import {
     activateRoute,
     passwordRoute,
-    passwordResetFinishRoute,
-    passwordResetInitRoute,
     registerRoute,
     socialRegisterRoute,
-    socialAuthRoute,
-    settingsRoute
+    socialAuthRoute
 } from './';
 
 const ACCOUNT_ROUTES = [
     activateRoute,
     passwordRoute,
-    passwordResetFinishRoute,
-    passwordResetInitRoute,
     registerRoute,
     socialAuthRoute,
-    socialRegisterRoute,
-    settingsRoute
+    socialRegisterRoute
 ];
 
 export const accountState: Routes = [{

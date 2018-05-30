@@ -21,7 +21,6 @@ import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import {
     JhiMainComponent,
     NavbarComponent,
-    FooterComponent,
     ProfileService,
     PageRibbonComponent,
     ErrorComponent
@@ -50,7 +49,6 @@ import {AddTopicModalService} from "./layouts/entries/addtopic/add-topic-modal.s
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        FooterComponent,
         EntriesComponent,
         EntryListComponent,
         EntryDetailComponent,

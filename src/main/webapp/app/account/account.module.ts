@@ -7,15 +7,10 @@ import {
     Register,
     ActivateService,
     PasswordService,
-    PasswordResetInitService,
-    PasswordResetFinishService,
     PasswordStrengthBarComponent,
     RegisterComponent,
     ActivateComponent,
     PasswordComponent,
-    PasswordResetInitComponent,
-    PasswordResetFinishComponent,
-    SettingsComponent,
     SocialRegisterComponent,
     SocialAuthComponent,
     accountState
@@ -33,16 +28,11 @@ import {
         RegisterComponent,
         PasswordComponent,
         PasswordStrengthBarComponent,
-        PasswordResetInitComponent,
-        PasswordResetFinishComponent,
-        SettingsComponent
     ],
     providers: [
         Register,
         ActivateService,
         PasswordService,
-        PasswordResetInitService,
-        PasswordResetFinishService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -22,20 +22,10 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Your password"
                            [(ngModel)]="password">
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="rememberMe">
-                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe" checked>
-                        <span>Remember me</span>
-                    </label>
-                </div>
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
             <p></p>
-            <div class="alert alert-warning">
-                <a class="alert-link" (click)="requestResetPassword()">Did you forget your password?</a>
-            </div>
-            <div class="alert alert-warning">
-                <span>You don't have an account yet?</span>
+            <div class="alert">
                 <a class="alert-link" (click)="register()">Register a new account</a>
             </div>
         </div>
