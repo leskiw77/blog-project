@@ -1,22 +1,35 @@
 <div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-success" (click)="newTopic()">New Topic</button>
-  </div>
+    <div class="col-md-3">
+        <button class="btn btn-success" (click)="newTopic()">New Topic</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-danger" (click)="console.log('deleteTopic()')">Delete Topic</button>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default" (click)="(console.log('search topis'))">Search topics</button>
+            </div>
+            <div class="col-md-6">
+                DROPDOWN
+            </div>
+        </div>
+        <div class="row">
+            INPUT
+        </div>
+    </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
-    <div
-      *ngFor="let entryEl of entriesList"
-      (click)="onSelected(entryEl)"
-    >
-
+    <div class="col-xs-12">
+        <div
+            *ngFor="let entryEl of entriesList"
+            (click)="onSelected(entryEl)">
             <div class="pull-left">
                 <h4 class="list-group-item-heading">{{ entryEl.title }}</h4>
             </div>
             <span class="pull-right">
             </span>
-
+        </div>
     </div>
-  </div>
 </div>

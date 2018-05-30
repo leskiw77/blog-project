@@ -29,7 +29,7 @@ export class EntryListComponent implements OnInit {
         this.loadEntries();
     }
 
-    loadEntries() {
+    public loadEntries() {
         this.entriesService.get().toPromise().then((response) => {
             const entries = response.body;
             if (entries) {
