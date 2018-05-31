@@ -22,7 +22,7 @@ public class Entry {
     @Column(name = "creation_date_time")
     private LocalDateTime creationDateTime;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany()
     @JoinTable(
         name = "entry_tag",
         joinColumns = { @JoinColumn(name = "entry_id") },

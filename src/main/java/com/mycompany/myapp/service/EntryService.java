@@ -5,6 +5,7 @@ import com.mycompany.myapp.domain.Tag;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.EntryRepository;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.EntryRequestDTO;
 import com.mycompany.myapp.service.dto.EntryResponseDTO;
@@ -112,4 +113,28 @@ public class EntryService {
         return entries;
     }
 
+    public boolean deleteEntry(long entryId) {
+
+        Optional<String> user = SecurityUtils.getCurrentUserLogin();
+        if(!user.isPresent()){
+            return false;
+        }
+
+        Optional<Entry> entry = entryRepository.findById(entryId);
+        if(!entry.isPresent()){
+            return false;
+        }
+
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            entryRepository.deleteById(entryId);
+            return true;
+        }
+
+        if (!entry.get().getCreator().getLogin().equals(user.get())){
+            return false;
+        }
+
+        entryRepository.deleteById(entryId);
+        return true;
+    }
 }

@@ -27,8 +27,6 @@ public class EntryController {
 
     @PostMapping("/new")
     public ResponseEntity createNewEntry(@RequestBody EntryRequestDTO entryRequestDTO) {
-
-
         return entryService.createNewEntry(entryRequestDTO) ?
             ResponseEntity.ok(HttpStatus.CREATED) : ResponseEntity.ok(HttpStatus.CONFLICT);
     }
@@ -43,6 +41,12 @@ public class EntryController {
     public EntryResponseListDTO searchResponseController(@RequestBody SearchRequestDTO searchRequestDTO) {
 
         return entryService.getAllSearched(searchRequestDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteEntry(@PathVariable("id") int entryId){
+        return entryService.deleteEntry(entryId) ?
+            ResponseEntity.ok(HttpStatus.OK) : ResponseEntity.ok(HttpStatus.FORBIDDEN);
     }
 
 }

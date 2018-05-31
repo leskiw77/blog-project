@@ -66,4 +66,8 @@ export class EntryListComponent implements OnInit {
             console.log('Error, cannot get entries');
         }
     }
+
+    deleteEntry() {
+        this.entriesApi.delete(this.selectedEntry).toPromise().then(res => console.log(res));
+    }
 }

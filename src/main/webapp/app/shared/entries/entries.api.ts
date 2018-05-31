@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 import { Entries } from '../user/entries.model';
+import {Entry} from "../user/entry.model";
 
 @Injectable()
 export class EntriesApi  {
@@ -36,6 +37,12 @@ export class EntriesApi  {
                 const jwt = bearerToken.slice(7, bearerToken.length);
                 return jwt;
             }
+        }
+    }
+
+    delete(entry: Entry) {
+        if( entry ) {
+            return this.http.delete(SERVER_API_URL + 'entry/delete/' + entry.id);
         }
     }
 }

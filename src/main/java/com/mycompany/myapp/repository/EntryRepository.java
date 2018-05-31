@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface EntryRepository extends JpaRepository<Entry, Long> {
     Optional<Entry> findByTitle(String title);
+    Optional<Entry> findById(long entryId);
+
+    void deleteById(long id);
 }
