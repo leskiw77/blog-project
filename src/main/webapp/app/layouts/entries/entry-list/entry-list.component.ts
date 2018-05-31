@@ -4,6 +4,8 @@ import {EntriesApi} from '../../../shared/entries/entries.api';
 
 import {NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {AddTopicModalService} from "../addtopic/add-topic-modal.service";
+import {HttpResponse} from "@angular/common/http";
+import {Entries} from "../../../shared/user/entries.model";
 
 
 @Component({
@@ -21,6 +23,9 @@ export class EntryListComponent implements OnInit {
     searchInput: string;
     searchParam: string;
 
+    authorSearchParam: string = 'user';
+    tagSearchParam: string[] = ['a', 'b'];
+
     selectedEntry: any = Entry;
 
     constructor(private entriesApi: EntriesApi,
@@ -33,12 +38,7 @@ export class EntryListComponent implements OnInit {
 
     public loadEntries() {
         this.entriesApi.get().toPromise().then((response) => {
-            const entries = response.body;
-            if (entries) {
-                this.entriesList = entries.entriesList;
-            } else {
-                console.log('Error, cannot get entries');
-            }
+            this.readEntriesFromResponse(response);
         });
     }
 
@@ -52,9 +52,18 @@ export class EntryListComponent implements OnInit {
     }
 
     searchEntries() {
-        this.entriesApi.search(this.searchInput, this.searchParam).subscribe((response) => {
-            console.log(response);
+        this.entriesApi.search(this.authorSearchParam, this.tagSearchParam)
+        .toPromise().then((response) => {
+            this.readEntriesFromResponse(response);
         })
     }
 
+    readEntriesFromResponse(response: HttpResponse<Entries>) {
+        const entries = response.body;
+        if (entries) {
+            this.entriesList = entries.entriesList;
+        } else {
+            console.log('Error, cannot get entries');
+        }
+    }
 }

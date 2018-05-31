@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -58,13 +59,8 @@ public class EntryService {
             .orElseThrow(() -> new IllegalStateException("No user with id " + id));
     }
 
-    public EntryResponseListDTO getAll(Optional<String> tag){
+    public EntryResponseListDTO getAll(){
         Stream<Entry> entries = entryRepository.findAll().stream();
-
-        if(tag.isPresent()){
-            System.out.printf("is present");
-            entries = entries.filter(e -> e.getTags().contains(new Tag(tag.get())));
-        }
 
         List<EntryResponseDTO> entriesDtoList = entries
             .map(e -> new EntryResponseDTO(e.getId(), e.getTitle(), e.getCreationDateTime(),
@@ -74,5 +70,46 @@ public class EntryService {
         return new EntryResponseListDTO(entriesDtoList);
     }
 
+
+    public EntryResponseListDTO getAllSearched(SearchRequestDTO searchRequestDTO) {
+        Stream<Entry> entries = getEntryStream(searchRequestDTO);
+
+        if(searchRequestDTO.getTags() != null && !searchRequestDTO.getTags().isEmpty()){
+            System.out.println("Search by tags");
+            entries = entries
+                .filter( entry -> anyTagInList(searchRequestDTO.getTags(),
+                    entry.getTags().stream()
+                        .map(Tag::getName)
+                        .collect(Collectors.toList())));
+        }
+
+        List<EntryResponseDTO> entriesDtoList = entries
+            .map(e -> new EntryResponseDTO(e.getId(), e.getTitle(), e.getCreationDateTime(),
+                e.getCreator().getLogin(), e.getText()))
+            .collect(Collectors.toList());
+
+        return new EntryResponseListDTO(entriesDtoList);
+    }
+
+    private boolean anyTagInList(List<String> searchedTags, List<String> entryTags){
+        for (String s: searchedTags){
+            if(entryTags.contains(s)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private Stream<Entry> getEntryStream(SearchRequestDTO searchRequestDTO) {
+        Stream<Entry> entries;
+        if(searchRequestDTO.getAuthor() != null && !searchRequestDTO.getAuthor().isEmpty()){
+            System.out.println("search by user");
+            entries = entryRepository.findAll().stream().filter(e -> e.getCreator().getLogin().equals(searchRequestDTO.getAuthor()));
+        }else {
+            entries = entryRepository.findAll().stream();
+        }
+        return entries;
+    }
 
 }

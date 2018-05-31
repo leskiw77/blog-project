@@ -12,8 +12,13 @@ export class EntriesApi  {
         return this.http.get<Entries>(SERVER_API_URL + 'entry/all', {observe : 'response'});
     }
 
-    search(searchText: string, searchParam: string): Observable<HttpResponse<Entries>> {
-        return this.http.get<Entries>(SERVER_API_URL + 'entry/' + searchText + '/' + searchParam, {observe : 'response'});
+    search(author: string, tags: string[]): any {
+        const data = {
+            author: author,
+            tags: tags
+        };
+
+        return this.http.post(SERVER_API_URL + 'entry/search', data, {observe : 'response'}).map(r => r);
     }
 
     add(entry): Observable<any> {

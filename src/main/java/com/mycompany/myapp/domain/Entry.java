@@ -96,5 +96,4 @@ public class Entry {
         this.text = text;
     }
 
-
 }
