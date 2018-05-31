@@ -1,30 +1,38 @@
-<div class="modal-header">
-    <h4 class="modal-title">Add topic</h4>
-    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
-    </button>
-</div>
+<div class="modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Add topic</h4>
+        <button aria-label="Close" data-dismiss="modal" class="close" type="button"
+                (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
 
-<div class="modal-body">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+                <form class="form" role="form" (ngSubmit)="addTopic()">
+                    <div class="form-group">
+                        <label for="topic">Topic</label>
+                        <input type="text" class="form-control" name="topic" id="topic" placeholder="Your topic"
+                               [(ngModel)]="title">
+                    </div>
 
-            <form class="form" role="form" (ngSubmit)="addTopic()">
-                <div class="form-group">
-                    <label for="topic">Topic</label>
-                    <input type="text" class="form-control" name="topic" id="topic" placeholder="Your topic"
-                    [(ngModel)]="title">
-                </div>
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control" name="topic" id="tags"
+                               placeholder="Your tags (comma separated)"
+                               [(ngModel)]="tags">
+                    </div>
 
-                <div class="form-group">
-                    <label for="text">Text</label>
-                    <textarea type="text" class="form-control" name="text" id="text" placeholder="Your text"
-                              [(ngModel)]="text"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <textarea type="text" class="form-control" name="text" id="text" placeholder="Your text"
+                                  [(ngModel)]="text"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
 
+            </div>
 
         </div>
-
     </div>
 </div>

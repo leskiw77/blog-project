@@ -16,7 +16,7 @@ import {
     JhiSocialComponent,
     SocialService,
 } from './';
-import { EntriesService } from './entries/entries.service';
+import { EntriesApi } from './entries/entries.api';
 import {AddTopicModalComponent} from "../layouts/entries/addtopic/addtopic.component";
 
 @NgModule({
@@ -39,7 +39,7 @@ import {AddTopicModalComponent} from "../layouts/entries/addtopic/addtopic.compo
         SocialService,
         UserService,
         DatePipe,
-        EntriesService,
+        EntriesApi,
     ],
     entryComponents: [
         JhiLoginModalComponent,

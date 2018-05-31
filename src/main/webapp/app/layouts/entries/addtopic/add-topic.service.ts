@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Principal} from "../../../shared/index";
-import {EntriesService} from "../../../shared/entries/entries.service";
+import {EntriesApi} from "../../../shared/entries/entries.api";
 
 
 @Injectable()
@@ -8,7 +8,7 @@ export class AddTopicService {
 
     constructor(
         private principal: Principal,
-        private entriesService: EntriesService
+        private entriesService: EntriesApi
     ) {}
 
 

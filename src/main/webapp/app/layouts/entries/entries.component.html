@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <app-entry-list
             (entryWasSelected)="selectedEntry = $event"
         ></app-entry-list>
     </div>
 
-    <div class="col-md-7">
+    <div class="col-md-6">
         <app-entry-detail
             *ngIf="selectedEntry; else infoText"
             [entry]="selectedEntry">

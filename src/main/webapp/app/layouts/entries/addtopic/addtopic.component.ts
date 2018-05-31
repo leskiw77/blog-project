@@ -10,7 +10,7 @@ import {AddTopicService} from './add-topic.service';
 export class AddTopicModalComponent implements AfterViewInit {
     title: string;
     text: string;
-    tags: string[];
+    tags: string;
 
     @Output() onModalClosed: EventEmitter<any> = new EventEmitter();
 
@@ -20,7 +20,6 @@ export class AddTopicModalComponent implements AfterViewInit {
         private renderer: Renderer,
         public activeModal: NgbActiveModal
     ) {
-        this.tags = ['alan']
     }
 
     ngAfterViewInit() {
@@ -31,7 +30,7 @@ export class AddTopicModalComponent implements AfterViewInit {
         this.addTopicService.add({
             title: this.title,
             text: this.text,
-            tags: this.tags
+            tags: this.tags.split(',').map(tag => tag.trim())
         }).then(() => {
             this.onModalClosed.emit("CLOSED");
             this.activeModal.close();

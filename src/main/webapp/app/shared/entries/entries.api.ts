@@ -5,11 +5,15 @@ import { SERVER_API_URL } from '../../app.constants';
 import { Entries } from '../user/entries.model';
 
 @Injectable()
-export class EntriesService  {
+export class EntriesApi  {
     constructor(private http: HttpClient) { }
 
     get(): Observable<HttpResponse<Entries>> {
         return this.http.get<Entries>(SERVER_API_URL + 'entry/all', {observe : 'response'});
+    }
+
+    search(searchText: string, searchParam: string): Observable<HttpResponse<Entries>> {
+        return this.http.get<Entries>(SERVER_API_URL + 'entry/' + searchText + '/' + searchParam, {observe : 'response'});
     }
 
     add(entry): Observable<any> {

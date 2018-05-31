@@ -7,15 +7,24 @@
     </div>
     <div class="col-md-6">
         <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-default" (click)="(console.log('search topis'))">Search topics</button>
+            <div class="col-md-5">
+                <button class="btn btn-default" (click)="searchEntries()">Search topics</button>
             </div>
-            <div class="col-md-6">
-                DROPDOWN
+            <div class="col-md-5">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SEARCH PARAM
+                    </button>
+                    <div class="dropdown-mKenu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button" (click)="searchParam='AUTHOR_ID'">AUTHOR NAME</button>
+                        <button class="dropdown-item" type="button" (click)="searchParam='DATE'">DATE</button>
+                        <button class="dropdown-item" type="button" (click)="searchParam='TAGS'">TAGS</button>
+                    </div>K
+                </div>
             </div>
         </div>
         <div class="row">
-            INPUT
+            <input [(ngModel)]="searchInput" style="margin-top: 15px">
         </div>
     </div>
 </div>
@@ -26,7 +35,7 @@
             *ngFor="let entryEl of entriesList"
             (click)="onSelected(entryEl)">
             <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ entryEl.title }}</h4>
+                <h4 class="list-group-item-heading topic-title">{{ entryEl.title }}</h4>
             </div>
             <span class="pull-right">
             </span>
