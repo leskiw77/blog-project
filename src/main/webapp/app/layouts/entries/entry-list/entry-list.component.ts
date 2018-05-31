@@ -21,6 +21,8 @@ export class EntryListComponent implements OnInit {
     searchInput: string;
     searchParam: string;
 
+    selectedEntry: any = Entry;
+
     constructor(private entriesApi: EntriesApi,
                 private addTopicModalService: AddTopicModalService) {
     }
@@ -41,6 +43,7 @@ export class EntryListComponent implements OnInit {
     }
 
     onSelected(entry: Entry) {
+        this.selectedEntry = entry;
         this.entryWasSelected.emit(entry);
     }
 

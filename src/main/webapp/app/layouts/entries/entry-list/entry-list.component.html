@@ -19,7 +19,7 @@
                         <button class="dropdown-item" type="button" (click)="searchParam='AUTHOR_ID'">AUTHOR NAME</button>
                         <button class="dropdown-item" type="button" (click)="searchParam='DATE'">DATE</button>
                         <button class="dropdown-item" type="button" (click)="searchParam='TAGS'">TAGS</button>
-                    </div>K
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +35,8 @@
             *ngFor="let entryEl of entriesList"
             (click)="onSelected(entryEl)">
             <div class="pull-left">
-                <h4 class="list-group-item-heading topic-title">{{ entryEl.title }}</h4>
+                <h4 class="list-group-item-heading topic-title" [ngClass]="{'selected-topic-title' : entryEl == selectedEntry}">
+                    {{ entryEl.title }}</h4>
             </div>
             <span class="pull-right">
             </span>

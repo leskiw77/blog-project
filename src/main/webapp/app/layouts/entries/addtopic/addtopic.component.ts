@@ -1,7 +1,10 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Output, Renderer} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Renderer} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {JhiEventManager} from 'ng-jhipster';
 
 import {AddTopicService} from './add-topic.service';
+import {StateStorageService} from "../../../shared/index";
+
 
 @Component({
     selector: 'jhi-addtopic-modal',
@@ -12,10 +15,10 @@ export class AddTopicModalComponent implements AfterViewInit {
     text: string;
     tags: string;
 
-    @Output() onModalClosed: EventEmitter<any> = new EventEmitter();
-
     constructor(
+        private eventManager: JhiEventManager,
         private addTopicService: AddTopicService,
+        private stateStorageService: StateStorageService,
         private elementRef: ElementRef,
         private renderer: Renderer,
         public activeModal: NgbActiveModal
@@ -32,7 +35,6 @@ export class AddTopicModalComponent implements AfterViewInit {
             text: this.text,
             tags: this.tags.split(',').map(tag => tag.trim())
         }).then(() => {
-            this.onModalClosed.emit("CLOSED");
             this.activeModal.close();
         });
     }
