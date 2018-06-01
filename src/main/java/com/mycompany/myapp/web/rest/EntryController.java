@@ -39,7 +39,6 @@ public class EntryController {
 
     @PostMapping("/search")
     public EntryResponseListDTO searchResponseController(@RequestBody SearchRequestDTO searchRequestDTO) {
-
         return entryService.getAllSearched(searchRequestDTO);
     }
 

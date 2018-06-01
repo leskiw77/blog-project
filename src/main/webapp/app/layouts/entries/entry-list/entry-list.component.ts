@@ -20,11 +20,8 @@ export class EntryListComponent implements OnInit {
     entriesList: Entry[];
     modalRef: NgbModalRef;
 
-    searchInput: string;
-    searchParam: string;
-
-    authorSearchParam: string = 'user';
-    tagSearchParam: string[] = ['a', 'b'];
+    authorSearchParam: string = '';
+    tagSearchParam: string = '';
 
     selectedEntry: any = Entry;
 
@@ -52,10 +49,18 @@ export class EntryListComponent implements OnInit {
     }
 
     searchEntries() {
-        this.entriesApi.search(this.authorSearchParam, this.tagSearchParam)
-        .toPromise().then((response) => {
-            this.readEntriesFromResponse(response);
-        })
+        if(!this.tagSearchParam && !this.authorSearchParam){
+            console.log("two empty");
+            this.loadEntries();
+        }
+        else {
+            this.entriesApi.search(this.authorSearchParam,
+                this.tagSearchParam.split(',')
+                    .map(tag => tag.trim()))
+                .toPromise().then((response) => {
+                this.readEntriesFromResponse(response);
+            })
+        }
     }
 
     readEntriesFromResponse(response: HttpResponse<Entries>) {

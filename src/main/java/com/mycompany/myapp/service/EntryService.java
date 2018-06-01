@@ -101,7 +101,6 @@ public class EntryService {
         return false;
     }
 
-
     private Stream<Entry> getEntryStream(SearchRequestDTO searchRequestDTO) {
         Stream<Entry> entries;
         if(searchRequestDTO.getAuthor() != null && !searchRequestDTO.getAuthor().isEmpty()){
@@ -114,7 +113,6 @@ public class EntryService {
     }
 
     public boolean deleteEntry(long entryId) {
-
         Optional<String> user = SecurityUtils.getCurrentUserLogin();
         if(!user.isPresent()){
             return false;

@@ -1,32 +1,26 @@
-<div class="row">
+<div class="row" style="text-align: center">
     <div class="col-md-3">
         <button class="btn btn-success" (click)="newTopic()">New Topic</button>
     </div>
     <div class="col-md-3">
         <button class="btn btn-danger" (click)="deleteEntry()">Delete Topic</button>
     </div>
-    <div class="col-md-6">
-        <div class="row">
-            <div class="col-md-5">
-                <button class="btn btn-default" (click)="searchEntries()">Search topics</button>
-            </div>
-
-            <div class="col-md-5">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        SEARCH PARAM
-                    </button>
-                    <div class="dropdown-mKenu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button" (click)="searchParam='AUTHOR_ID'">AUTHOR NAME</button>
-                        <button class="dropdown-item" type="button" (click)="searchParam='DATE'">DATE</button>
-                        <button class="dropdown-item" type="button" (click)="searchParam='TAGS'">TAGS</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <input [(ngModel)]="searchInput" style="margin-top: 15px">
-        </div>
+</div>
+<hr>
+<div class="row" style="text-align: center">
+    <div class="col-md-3">
+        <p >Author</p>
+        <input [(ngModel)]="authorSearchParam">
+    </div>
+    <div class="col-md-3">
+        <p style="text-align: center">Tags</p>
+        <input
+            placeholder="comma separated"
+            [(ngModel)]="tagSearchParam">
+    </div>
+    <div class="col-md-5">
+        <br>
+        <button class="btn btn-default" (click)="searchEntries()">Search topics</button>
     </div>
 </div>
 <hr>
