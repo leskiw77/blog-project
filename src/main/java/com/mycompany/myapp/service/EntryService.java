@@ -28,11 +28,14 @@ public class EntryService {
     private final UserRepository userRepository;
     private final EntryRepository entryRepository;
     private final TagsService tagsService;
+    private final TwitterIntegrationService twitterIntegrationService;
 
-    public EntryService(UserRepository userRepository, EntryRepository entryRepository, TagsService tagsService) {
+    public EntryService(UserRepository userRepository, EntryRepository entryRepository, TagsService tagsService,
+                        TwitterIntegrationService twitterIntegrationService) {
         this.userRepository = userRepository;
         this.entryRepository = entryRepository;
         this.tagsService = tagsService;
+        this.twitterIntegrationService = twitterIntegrationService;
     }
 
     public boolean createNewEntry(EntryRequestDTO entryRequestDTO){
@@ -68,13 +71,14 @@ public class EntryService {
                  e.getCreator().getLogin(), e.getText()))
             .collect(Collectors.toList());
 
+        System.out.println("dupa: " + entriesDtoList.size());
         return new EntryResponseListDTO(entriesDtoList);
     }
 
 
     public EntryResponseListDTO getAllSearched(SearchRequestDTO searchRequestDTO) {
         Stream<Entry> entries = getEntryStream(searchRequestDTO);
-
+        List<EntryResponseDTO> twitterEntries = null;
         if(searchRequestDTO.getTags() != null && !searchRequestDTO.getTags().isEmpty()){
             System.out.println("Search by tags");
             entries = entries
@@ -82,6 +86,7 @@ public class EntryService {
                     entry.getTags().stream()
                         .map(Tag::getName)
                         .collect(Collectors.toList())));
+            twitterEntries = twitterIntegrationService.getStatusesForListOfTags(searchRequestDTO.getTags());
         }
 
         List<EntryResponseDTO> entriesDtoList = entries
@@ -89,7 +94,7 @@ public class EntryService {
                 e.getCreator().getLogin(), e.getText()))
             .collect(Collectors.toList());
 
-        return new EntryResponseListDTO(entriesDtoList);
+        return new EntryResponseListDTO(entriesDtoList, twitterEntries);
     }
 
     private boolean anyTagInList(List<String> searchedTags, List<String> entryTags){
@@ -104,7 +109,6 @@ public class EntryService {
     private Stream<Entry> getEntryStream(SearchRequestDTO searchRequestDTO) {
         Stream<Entry> entries;
         if(searchRequestDTO.getAuthor() != null && !searchRequestDTO.getAuthor().isEmpty()){
-            System.out.println("search by user");
             entries = entryRepository.findAll().stream().filter(e -> e.getCreator().getLogin().equals(searchRequestDTO.getAuthor()));
         }else {
             entries = entryRepository.findAll().stream();

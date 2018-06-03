@@ -6,8 +6,11 @@
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"> HELLO "{{account.login}}". </span>
+                <span *ngIf="account"> HELLO "{{account.login}}" </span>
             </div>
+            <p>
+                Blog application for TAI
+            </p>
         </div>
     </div>
 </div>

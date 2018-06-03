@@ -18,6 +18,7 @@ export class EntryListComponent implements OnInit {
     @Output() entryWasSelected = new EventEmitter<Entry>();
 
     entriesList: Entry[];
+    entriesListForTwitter: Entry[];
     modalRef: NgbModalRef;
 
     authorSearchParam: string = '';
@@ -65,8 +66,10 @@ export class EntryListComponent implements OnInit {
 
     readEntriesFromResponse(response: HttpResponse<Entries>) {
         const entries = response.body;
+
         if (entries) {
             this.entriesList = entries.entriesList;
+            this.entriesListForTwitter = entries.entriesListForTweeter;
         } else {
             console.log('Error, cannot get entries');
         }

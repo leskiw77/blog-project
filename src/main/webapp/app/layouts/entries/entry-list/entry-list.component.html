@@ -38,3 +38,18 @@
         </div>
     </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <div
+            *ngFor="let entryEl of entriesListForTwitter"
+            (click)="onSelected(entryEl)">
+            <div class="pull-left">
+                <h4 class="list-group-item-heading topic-title" [ngClass]="{'selected-topic-title-tw' : entryEl == selectedEntry}">
+                    {{ entryEl.title }}</h4>
+            </div>
+            <span class="pull-right">
+            </span>
+        </div>
+    </div>
+</div>

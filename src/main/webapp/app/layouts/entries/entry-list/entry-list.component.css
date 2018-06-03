@@ -6,5 +6,9 @@
 }
 
 .selected-topic-title {
-    background: greenyellow;
+    background: #fc8c84;
+}
+
+.selected-topic-title-tw {
+    background: dodgerblue;
 }
