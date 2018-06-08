@@ -51,8 +51,13 @@ export class EntryListComponent implements OnInit {
 
     searchEntries() {
         if(!this.tagSearchParam && !this.authorSearchParam){
-            console.log("two empty");
             this.loadEntries();
+        }
+        else if(!this.tagSearchParam){
+            this.entriesApi.search(this.authorSearchParam, [])
+                .toPromise().then((response) => {
+                this.readEntriesFromResponse(response);
+            })
         }
         else {
             this.entriesApi.search(this.authorSearchParam,

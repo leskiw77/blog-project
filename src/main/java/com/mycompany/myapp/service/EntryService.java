@@ -70,8 +70,6 @@ public class EntryService {
             .map(e -> new EntryResponseDTO(e.getId(), e.getTitle(), e.getCreationDateTime(),
                  e.getCreator().getLogin(), e.getText()))
             .collect(Collectors.toList());
-
-        System.out.println("dupa: " + entriesDtoList.size());
         return new EntryResponseListDTO(entriesDtoList);
     }
 
@@ -79,6 +77,7 @@ public class EntryService {
     public EntryResponseListDTO getAllSearched(SearchRequestDTO searchRequestDTO) {
         Stream<Entry> entries = getEntryStream(searchRequestDTO);
         List<EntryResponseDTO> twitterEntries = null;
+
         if(searchRequestDTO.getTags() != null && !searchRequestDTO.getTags().isEmpty()){
             System.out.println("Search by tags");
             entries = entries
@@ -109,6 +108,7 @@ public class EntryService {
     private Stream<Entry> getEntryStream(SearchRequestDTO searchRequestDTO) {
         Stream<Entry> entries;
         if(searchRequestDTO.getAuthor() != null && !searchRequestDTO.getAuthor().isEmpty()){
+            System.out.println("Search by name");
             entries = entryRepository.findAll().stream().filter(e -> e.getCreator().getLogin().equals(searchRequestDTO.getAuthor()));
         }else {
             entries = entryRepository.findAll().stream();
