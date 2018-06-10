@@ -1,1 +1,1 @@
-web: mvnw.cmd
+web: npm start
