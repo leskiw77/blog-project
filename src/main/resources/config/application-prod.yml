@@ -36,16 +36,19 @@ spring:
 #                prepStmtCacheSize: 250
 #                prepStmtCacheSqlLimit: 2048
 #                useServerPrepStmts: true
-        type: com.zaxxer.hikari.HikariDataSource
-        url: r4919aobtbi97j46.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-        username: ydwhfbpx12lomm14
-        password: lowvec9sseuwz8d2
-        hikari:
-            data-source-properties:
-                cachePrepStmts: true
-                prepStmtCacheSize: 250
-                prepStmtCacheSqlLimit: 2048
-                useServerPrepStmts: true
+#        type: com.zaxxer.hikari.HikariDataSource
+#        url: r4919aobtbi97j46.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+#        username: ydwhfbpx12lomm14
+#        password: lowvec9sseuwz8d2
+#        hikari:
+#            data-source-properties:
+#                cachePrepStmts: true
+#                prepStmtCacheSize: 250
+#                prepStmtCacheSqlLimit: 2048
+#                useServerPrepStmts: true
+        url: ${JDBC_DATABASE_URL}
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
