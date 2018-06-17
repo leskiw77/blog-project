@@ -12,7 +12,7 @@
 
 eureka:
     instance:
-        hostname: tai-blog-lmb.herokuapp.com
+        hostname: blog-tai-project.herokuapp.com
         non-secure-port: 80
         prefer-ip-address: false
     client:
