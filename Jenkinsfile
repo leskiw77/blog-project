@@ -20,6 +20,10 @@ node {
         sh "./mvnw com.github.eirslett:frontend-maven-plugin:npm"
     }
 
+    stage('spotbugs') {
+        sh "mvn compile spotbugs:spotbugs"
+    }
+
     stage('backend tests') {
         try {
             sh "./mvnw test"
